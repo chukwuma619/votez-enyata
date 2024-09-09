@@ -1,5 +1,5 @@
 import Testimonials from '@/components/homepage/testimonials';
-import Pricing from '@/components/homepage/pricing';
+// import Pricing from '@/components/homepage/pricing';
 import Footer from '@/components/homepage/footer';
 import Features from '@/components/homepage/features';
 import HomeNavbar from '@/components/homepage/navbar';
