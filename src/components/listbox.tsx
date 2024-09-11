@@ -106,7 +106,7 @@ export function ListboxOption<T>({
   className,
   ...props
 }: { className?: string; children?: React.ReactNode } & Omit<Headless.ListboxOptionProps<'div', T>, 'className'>) {
-  let sharedClasses = clsx(
+  const sharedClasses = clsx(
     // Base
     'flex min-w-0 items-center',
     // Icons

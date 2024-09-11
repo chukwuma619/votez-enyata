@@ -1,8 +1,6 @@
 'use server';
 import { createClient } from '@/lib/supabase/action';
 import { z } from 'zod';
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 const voteSchema = z.object({
   candidate_id: z.string(),
@@ -15,7 +13,7 @@ export async function castVote(
   vot_id: string,
   posi_id: string,
   elect_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -36,7 +34,7 @@ export async function castVote(
   const { candidate_id, election_id, position_id, voter_id } =
     validatedFields.data;
 
-  const { data: votes, error: votesError } = await supabase
+  const { data: votes } = await supabase
     .from('votes')
     .select('id')
     .match({

@@ -2,7 +2,6 @@
 import { createClient } from '@/lib/supabase/action';
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
-import { getAuthUser } from '@/data/profile';
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_FILE_TYPES = [
   'image/jpeg',
@@ -73,7 +72,7 @@ const updateSchema = z
 export async function createCandidate(
   position_id: string,
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -133,7 +132,7 @@ export async function updateCandidate(
   candidate_id: string,
   position_id: string,
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();

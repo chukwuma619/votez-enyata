@@ -1,7 +1,6 @@
 'use server';
 import { createClient } from '@/lib/supabase/server';
 import { Tables } from '@/types/database.types';
-import { redirect } from 'next/navigation';
 
 export async function getVotingData(election_id: string, voter_id: string) {
   const supabase = createClient();

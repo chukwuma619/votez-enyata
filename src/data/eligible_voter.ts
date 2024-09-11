@@ -1,6 +1,5 @@
 'use server';
 import { createClient } from '@/lib/supabase/server';
-import { notFound } from 'next/navigation';
 import { getElection } from './election';
 const ITEMS_PER_PAGE = 6;
 export async function getFilteredElectionEligibleVoters(
@@ -12,7 +11,7 @@ export async function getFilteredElectionEligibleVoters(
   const isElectionValid = await getElection(election_id);
   const supabase = createClient();
 
-  let { data: voters, error } = await supabase
+  const { data: voters, error } = await supabase
     .from('eligible_voters')
     .select('*')
     .eq('election_id', isElectionValid.id)

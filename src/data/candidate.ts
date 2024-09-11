@@ -5,7 +5,7 @@ export async function getCandidatesOfPosition(position_id: string) {
   const position = await getPosition(position_id);
   const supabase = createClient();
 
-  let { data: candidates, error } = await supabase
+  const { data: candidates, error } = await supabase
     .from('candidates')
     .select('*')
     .eq('position_id', position.id);

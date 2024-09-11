@@ -4,13 +4,11 @@ export default function BentoCard({
   title,
   description,
   graphic,
-  fadeImage,
 }: {
   className?: string;
   title: string;
   description: string;
   graphic: React.ReactNode;
-  fadeImage: boolean;
 }) {
   return (
     <>

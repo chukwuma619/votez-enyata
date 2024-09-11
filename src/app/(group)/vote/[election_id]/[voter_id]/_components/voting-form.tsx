@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { Radio, RadioField, RadioGroup } from '@/components/radio';
 import { Tables } from '@/types/database.types';
 import { castVote } from '@/actions/vote';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormState } from 'react-dom';
 import { Notification } from '@/components/notification';
 
 export default function VotingForm({
@@ -34,7 +34,7 @@ export default function VotingForm({
   };
 }) {
   const [selectedPosition, setSelectedPosition] = useState(positions[0].id);
-  const [candidate, setCandidate] = useState(candid);
+  const [candidate] = useState(candid);
   const [candidateFromSelectedPosition, setCandidateFromSelectedPosition] =
     useState(candidate[selectedPosition]);
 
@@ -189,8 +189,6 @@ export default function VotingForm({
                   <div className="flex items-center gap-6 py-6">
                     <Avatar
                       className="size-20"
-                      width={80}
-                      height={80}
                       square
                       alt=""
                       src={person.photo_url}

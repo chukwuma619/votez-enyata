@@ -25,7 +25,7 @@ const verifySchema = z.object({
 
 export async function createEligibleVoter(
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -63,7 +63,7 @@ export async function createEligibleVoter(
 export async function updateEligibleVoter(
   voter_id: string,
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -79,7 +79,7 @@ export async function updateEligibleVoter(
     };
   }
   const { name, email } = validatedFields.data;
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('eligible_voters')
     .update({
       name: name,
@@ -136,7 +136,7 @@ export async function sendMail({
   const resend = new Resend(process.env.RESEND_API_KEY);
   const supabase = createClient();
 
-  const { data, error } = await resend.emails.send({
+  const { data } = await resend.emails.send({
     from: 'support@tryvotez.com',
     to: voterEmail,
     subject: 'Participate in the Upcoming Election!',
@@ -153,7 +153,7 @@ export async function sendMail({
   });
 
   if (data && data.id) {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('eligible_voters')
       .update({
         msg_status: true,
@@ -169,7 +169,7 @@ export async function sendMail({
 
 export async function validateVoter(
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();

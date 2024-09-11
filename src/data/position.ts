@@ -6,7 +6,7 @@ export async function getElectionPositions(election_id: string) {
   const isElectionValid = await getElection(election_id);
   const supabase = createClient();
 
-  let { data: positions, error } = await supabase
+  const { data: positions, error } = await supabase
     .from('positions')
     .select('*')
     .eq('election_id', isElectionValid.id);
@@ -22,7 +22,7 @@ export async function getElectionPositions(election_id: string) {
 export async function getPosition(position_id: string) {
   const supabase = createClient();
 
-  let { data: position, error } = await supabase
+  const { data: position, error } = await supabase
     .from('positions')
     .select('*')
     .eq('id', position_id)

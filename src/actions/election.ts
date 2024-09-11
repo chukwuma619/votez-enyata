@@ -22,7 +22,7 @@ const electionSchema = z
     },
   );
 
-export async function createElection(prevState: any, formData: FormData) {
+export async function createElection(prevState: unknown, formData: FormData) {
   const supabase = createClient();
   const user = await getAuthUser();
 
@@ -63,7 +63,7 @@ export async function createElection(prevState: any, formData: FormData) {
 
 export async function updateElection(
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -84,7 +84,7 @@ export async function updateElection(
   }
   const { description, name, start_datetime, end_datetime } =
     validatedFields.data;
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('elections')
     .update({
       name: name,
@@ -117,23 +117,3 @@ export async function deleteElection(election_id: string) {
   revalidatePath('/dashboard/elections');
 }
 
-export async function updatePaymentStatus(
-  election_id: string,
-  reference: string,
-) {
-  const { data, error } = await verifyPayment({ reference: reference });
-
-  if (error) console.error(error);
-  if (data?.data.data.status) {
-    const supabase = createClient();
-
-    const { error } = await supabase
-      .from('elections')
-      .update({
-        has_paid: true,
-      })
-      .match({ id: election_id });
-    revalidatePath('/dashboard/elections');
-    if (error) console.error(error);
-  }
-}

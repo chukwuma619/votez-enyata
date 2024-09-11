@@ -72,7 +72,7 @@ const updateProfileSchema = z
       path: ['photo'],
     },
   );
-export async function registerUser(prevState: any, formData: FormData) {
+export async function registerUser(prevState: unknown, formData: FormData) {
   const validatedFields = UserSchema.safeParse({
     first_name: formData.get('first_name'),
     last_name: formData.get('last_name'),
@@ -91,7 +91,7 @@ export async function registerUser(prevState: any, formData: FormData) {
 
   const supabase = createClient();
 
-  const { data, error } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email: email,
     password: password,
     options: {
@@ -107,7 +107,7 @@ export async function registerUser(prevState: any, formData: FormData) {
   redirect('/dashboard');
 }
 
-export async function signInWithEmail(prevState: any, formData: FormData) {
+export async function signInWithEmail(prevState: unknown, formData: FormData) {
   const validatedFields = LoginFormSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
@@ -124,7 +124,7 @@ export async function signInWithEmail(prevState: any, formData: FormData) {
 
   const supabase = createClient();
 
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
   });
@@ -137,7 +137,7 @@ export async function signInWithEmail(prevState: any, formData: FormData) {
 
 export async function updateProfile(
   user_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const validatedFields = updateProfileSchema.safeParse({

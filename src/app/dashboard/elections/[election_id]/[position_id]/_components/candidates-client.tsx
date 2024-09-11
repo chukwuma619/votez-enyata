@@ -67,8 +67,6 @@ export default function CandidateClient({
                 <Avatar
                   src={candidate.photo_url}
                   className="[&>img]:aspect-square [&>img]:size-16 [&>img]:object-cover"
-                  width={64}
-                  height={64}
                   square
                   alt={`photo of ${candidate.name}`}
                 />

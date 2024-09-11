@@ -1,4 +1,4 @@
-import { Heading, Subheading } from '@/components/heading';
+import { Subheading } from '@/components/heading';
 import { Text } from '@/components/text';
 import { Container } from '@/components/container';
 import BentoCard from '@/components/bento-card';
@@ -91,7 +91,6 @@ export default function Features() {
               title={feature.name}
               description={feature.description}
               graphic={feature.graphic}
-              fadeImage={feature.fadeImage}
             />
           ))}
         </div>

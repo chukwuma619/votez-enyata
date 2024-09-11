@@ -1,12 +1,11 @@
 'use server';
 import { createClient } from '@/lib/supabase/action';
 import { z } from 'zod';
-import { revalidatePath } from 'next/cache';
 
 const feedbackSchema = z.object({
   feedback: z.string().min(1, 'feedback must contain at least 1 character(s)'),
 });
-export async function createFeedback(prevState: any, formData: FormData) {
+export async function createFeedback(prevState: unknown, formData: FormData) {
   const supabase = createClient();
 
   const validatedFields = feedbackSchema.safeParse({

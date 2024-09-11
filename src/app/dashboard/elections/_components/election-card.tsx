@@ -27,8 +27,6 @@ export default function ElectionCard({
   election,
 }: {
   election: Tables<'elections'>;
-  userEmail: string;
-  conversionRate: number;
 }) {
   const [openEditModel, setOpenEditModal] = useState(false);
   const [selectedData, setSelectedData] = useState<Tables<'elections'>>();

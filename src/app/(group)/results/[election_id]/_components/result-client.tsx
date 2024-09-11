@@ -4,7 +4,7 @@ import { Avatar } from '@/components/avatar';
 import { Navbar, NavbarItem, NavbarSection } from '@/components/navbar';
 import { Subheading } from '@/components/heading';
 import { Strong, Text } from '@/components/text';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import DashboardSkeleton from '@/components/skeletons';
@@ -18,9 +18,9 @@ export default function ResultClient({
   positions: Omit<Tables<'positions'>, 'election_id' | 'created_at'>[];
   candid: { [key: string]: (Tables<'candidates'> & { voteCount: number })[] };
 }) {
-  let [selectedPosition, setSelectedPosition] = useState(positions[0].id);
-  let [candidate, setCandidate] = useState(candid);
-  let [candidateFromSelectedPosition, setCandidateFromSelectedPosition] =
+  const [selectedPosition, setSelectedPosition] = useState(positions[0].id);
+  const [candidate, setCandidate] = useState(candid);
+  const [candidateFromSelectedPosition, setCandidateFromSelectedPosition] =
     useState(candidate[selectedPosition]);
 
   useEffect(() => {
@@ -109,8 +109,7 @@ export default function ResultClient({
                   <div className="flex items-center gap-6 py-6">
                     <Avatar
                       className="size-20"
-                      width={80}
-                      height={80}
+                     
                       square
                       alt=""
                       src={person.photo_url}

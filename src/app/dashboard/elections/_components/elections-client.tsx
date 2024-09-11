@@ -10,13 +10,10 @@ import ElectionCard from './election-card';
 
 export default function ElectionClient({
   elections,
-  userEmail,
-  conversionRate,
 }: {
   elections: Tables<'elections'>[];
   hasUseFreePlan: boolean;
   userEmail: string;
-  conversionRate: number;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -40,10 +37,8 @@ export default function ElectionClient({
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
             {elections.map((election, index) => (
               <ElectionCard
-                userEmail={userEmail}
                 key={index}
                 election={election}
-                conversionRate={conversionRate}
               />
             ))}
           </div>

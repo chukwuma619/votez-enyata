@@ -1,11 +1,11 @@
 'use client';
 import { Button } from '@/components/button';
 import { useState } from 'react';
-import { ClockIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import VoterInstruction from './instruction';
 
 export default function InstructionButton() {
-  let [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <>

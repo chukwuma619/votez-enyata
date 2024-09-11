@@ -103,8 +103,6 @@ export default function DashboardLayoutClient({
                     <Avatar
                       src={profileData.photo_url}
                       square
-                      width={28}
-                      height={28}
                       className='[&>img]:aspect-square [&>img]:size-7 [&>img]:object-cover'
                       alt={`photo of ${profileData.first_name} ${profileData.last_name}`}
                     />
@@ -112,8 +110,7 @@ export default function DashboardLayoutClient({
                     <Avatar
                       initials={`${profileData.first_name[0]}${profileData.last_name[0]}`}
                       square
-                      width={28}
-                      height={28}
+                     
                       className="size-7 bg-zinc-900 text-white dark:bg-white dark:text-black"
                     />
                   )}
@@ -188,8 +185,6 @@ export default function DashboardLayoutClient({
                       <Avatar
                         src={profileData.photo_url}
                         square
-                        width={40}
-                        height={40}
                         className='[&>img]:aspect-square [&>img]:size-10 [&>img]:object-cover'
                         alt={`photo of ${profileData.first_name} ${profileData.last_name}`}
                       />
@@ -198,8 +193,7 @@ export default function DashboardLayoutClient({
                         initials={`${profileData.first_name[0]}${profileData.last_name[0]}`}
                         square
                         className="size-10 bg-zinc-900 text-white dark:bg-white dark:text-black"
-                        width={40}
-                        height={40}
+                        
                       />
                     )}
 

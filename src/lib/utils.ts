@@ -1,4 +1,3 @@
-import * as crypto from 'crypto';
 
 export const formatCurrency = (amount: number) => {
   return amount.toLocaleString('en-US', {

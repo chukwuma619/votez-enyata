@@ -1,6 +1,5 @@
-import { Heading, Subheading } from '@/components/heading';
+import { Heading } from '@/components/heading';
 import { Strong, Text } from '@/components/text';
-import Image from 'next/image';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import {

@@ -15,7 +15,7 @@ export async function getAuthUser() {
 
 export async function getAuthUserProfile(user_id: string) {
   const supabase = createClient();
-  let { data: profile, error } = await supabase
+  const { data: profile, error } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', user_id)
@@ -48,7 +48,7 @@ export async function getAuthUserOverviewData({
     .eq('creator_id', user.id);
 
   // Fetch previous elections
-  const { data: prevElections, error: prevElectionsError } = await supabase
+  const { data: prevElections } = await supabase
     .from('elections')
     .select('*')
     .lt('created_at', current)
@@ -116,12 +116,12 @@ export async function getAuthUserOverviewData({
     : [];
 
   // Fetch previous voters and votes
-  const { data: prevVoters, error: prevVotersError } = await supabase
+  const { data: prevVoters } = await supabase
     .from('eligible_voters')
     .select('*')
     .in('election_id', prevElectionIds);
 
-  const { data: prevVotes, error: prevVotesError } = await supabase
+  const { data: prevVotes } = await supabase
     .from('votes')
     .select('*')
     .in('election_id', prevElectionIds);

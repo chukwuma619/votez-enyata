@@ -1,11 +1,4 @@
-import {
-  getCandidatesOfPosition,
-  getElection,
-  getPositionsOfElection,
-  getTotalVotesForCandidate,
-} from '@/data/query';
 import { notFound } from 'next/navigation';
-import type { CandidateType } from '@/data/placeholder';
 import ResultClient from './_components/result-client';
 import { getResultData } from '@/data/vote';
 import { Heading } from '@/components/heading';

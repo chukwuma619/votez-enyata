@@ -12,7 +12,7 @@ const positionSchema = z.object({
 
 export async function createPosition(
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -47,7 +47,7 @@ export async function createPosition(
 export async function updatePosition(
   position_id: string,
   election_id: string,
-  prevState: any,
+  prevState: unknown,
   formData: FormData,
 ) {
   const supabase = createClient();
@@ -62,7 +62,7 @@ export async function updatePosition(
     };
   }
   const { name } = validatedFields.data;
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('positions')
     .update({
       name: name,

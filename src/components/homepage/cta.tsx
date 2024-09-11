@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Container } from '../container';
 import { Subheading } from '../heading';
 import { Text } from '../text';

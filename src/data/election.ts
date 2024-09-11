@@ -6,7 +6,7 @@ import { getAuthUser } from './profile';
 export async function getUserElections(user_id: string) {
   const supabase = createClient();
 
-  let { data: elections, error } = await supabase
+  const { data: elections, error } = await supabase
     .from('elections')
     .select('*')
     .eq('creator_id', user_id);
@@ -23,7 +23,7 @@ export async function hasUserExhustedFreePlan() {
   const user = await getAuthUser();
   const supabase = createClient();
 
-  let { data: elections, error } = await supabase
+  const { data: elections, error } = await supabase
     .from('elections')
     .select('*')
     .match({ creator_id: user.id, plan: 'free' })
@@ -43,7 +43,7 @@ export async function hasUserExhustedFreePlan() {
 export async function getElection(election_id: string) {
   const supabase = createClient();
 
-  let { data: election, error } = await supabase
+  const { data: election, error } = await supabase
     .from('elections')
     .select('*')
     .eq('id', election_id)
@@ -63,7 +63,7 @@ export async function getElection(election_id: string) {
 export async function getUserUpcomingElections(user_id: string) {
   const supabase = createClient();
 
-  let { data: elections, error } = await supabase
+  const { data: elections, error } = await supabase
     .from('elections')
     .select('*')
     .match({ creator_id: user_id, status: 'pending' });

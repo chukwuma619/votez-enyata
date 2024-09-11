@@ -18,7 +18,6 @@ import { useState } from 'react';
 import CreatePositionForm from '@/app/dashboard/elections/[election_id]/_components/create-form';
 
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid';
-import { PositionType } from '@/data/placeholder';
 import { usePathname } from 'next/navigation';
 import { Tables } from '@/types/database.types';
 import UpdatePositionForm from './edit-form';
@@ -31,8 +30,8 @@ export default function PositionsClient({
   positions: Tables<'positions'>[];
   election_id: string;
 }) {
-  let [isOpen, setIsOpen] = useState(false);
-  let [openEditModel, setOpenEditModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [openEditModel, setOpenEditModal] = useState(false);
   const [selectedData, setSelectedData] = useState<Tables<'positions'>>();
   const pathname = usePathname();
 

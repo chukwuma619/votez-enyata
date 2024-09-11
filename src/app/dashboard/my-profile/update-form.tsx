@@ -1,22 +1,18 @@
 'use client';
 import { FormButton } from '@/components/button';
 import { Heading } from '@/components/heading';
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import {
   ChangeEvent,
-  Dispatch,
-  SetStateAction,
   useEffect,
   useState,
 } from 'react';
 import Image from 'next/image';
 import { Field, FieldGroup, Fieldset } from '@/components/fieldset';
-import { Input, InputGroup } from '@/components/input';
+import { Input } from '@/components/input';
 import { Label, ErrorMessage } from '@/components/fieldset';
 import { useFormState } from 'react-dom';
 import { Notification } from '@/components/notification';
 import { Tables } from '@/types/database.types';
-import { Divider } from '@/components/divider';
 import { updateProfile } from '@/actions/profile';
 
 export default function UpdateProfileForm({
@@ -24,7 +20,7 @@ export default function UpdateProfileForm({
 }: {
   data: Tables<'profiles'>;
 }) {
-  let [previewImg, setPreviewImg] = useState(
+  const [previewImg, setPreviewImg] = useState(
     data.photo_url || '/images/placeholder-user-image.jpg',
   );
 
@@ -45,7 +41,7 @@ export default function UpdateProfileForm({
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (ev: ProgressEvent<FileReader>) => {
-        setPreviewImg(ev.target?.result! as string);
+        setPreviewImg(ev.target?.result as string);
       };
       reader.readAsDataURL(file);
     }

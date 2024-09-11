@@ -10,7 +10,6 @@ import {
   NavbarSection,
   NavbarSpacer,
 } from '@/components/navbar';
-import crypto from "crypto"
 import { Link } from '@/components/link';
 
 const navigation = {
@@ -25,12 +24,7 @@ const navigation = {
   ],
 };
 
-const stats = [
-  { id: 1, name: 'Elections Hosted', value: '10,000+' },
-  { id: 2, name: 'Votes Cast', value: '500,000+' },
-  { id: 3, name: 'Satisfied Creators', value: '1,000+' },
-  { id: 4, name: 'Uptime', value: '99.99%' },
-];
+
 
 export default function HomeNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

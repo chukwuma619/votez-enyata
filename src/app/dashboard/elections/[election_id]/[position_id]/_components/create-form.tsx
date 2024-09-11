@@ -1,6 +1,5 @@
 'use client';
 import {
-  Description,
   Field,
   FieldGroup,
   Fieldset,
@@ -15,7 +14,6 @@ import {
   Dialog,
   DialogActions,
   DialogBody,
-  DialogDescription,
   DialogTitle,
 } from '@/components/dialog';
 import {
@@ -25,7 +23,6 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Avatar } from '@/components/avatar';
 import { createCandidate } from '@/actions/candidate';
 import { useFormState } from 'react-dom';
 import { Notification } from '@/components/notification';
@@ -40,7 +37,7 @@ export default function CreateCandidateForm({
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) {
-  let [previewImg, setPreviewImg] = useState(
+  const [previewImg, setPreviewImg] = useState(
     '/images/placeholder-user-image.jpg',
   );
   const [errorMessage, dispatch] = useFormState(
@@ -65,7 +62,7 @@ export default function CreateCandidateForm({
       console.log(file);
       const reader = new FileReader();
       reader.onload = (ev: ProgressEvent<FileReader>) => {
-        setPreviewImg(ev.target?.result! as string);
+        setPreviewImg(ev.target?.result as string);
       };
       reader.readAsDataURL(file);
     }

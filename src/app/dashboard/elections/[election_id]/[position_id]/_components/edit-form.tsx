@@ -64,7 +64,7 @@ export default function UpdateCandidateForm({
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (ev: ProgressEvent<FileReader>) => {
-        setPreviewImg(ev.target?.result! as string);
+        setPreviewImg(ev.target?.result as string);
       };
       reader.readAsDataURL(file);
     }
