@@ -1,5 +1,4 @@
 import {
-  Description,
   Field,
   FieldGroup,
   Fieldset,
@@ -7,28 +6,18 @@ import {
   ErrorMessage,
 } from '@/components/fieldset';
 import { Input } from '@/components/input';
-import { Textarea } from '@/components/textarea';
 import { Button, FormButton } from '@/components/button';
 import { Notification } from '@/components/notification';
 import {
   Dialog,
   DialogActions,
   DialogBody,
-  DialogDescription,
   DialogTitle,
 } from '@/components/dialog';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { createEligibleVoter } from '@/actions/eligible_voter';
-import {
-  ArrowDownTrayIcon,
-  ArrowUpOnSquareStackIcon,
-  ArrowUpTrayIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
 
-import { FileUploader } from 'react-drag-drop-files';
-import { Strong, Text } from '@/components/text';
 export default function CreateVoterForm({
   isOpen,
   setIsOpen,
@@ -43,8 +32,7 @@ export default function CreateVoterForm({
     undefined,
   );
 
-  const [showImportLargeVoterModal, setHowImportLargeVoterModal] =
-    useState(false);
+  
   const [showError, setShowError] = useState(false);
   useEffect(() => {
     if (errorMessage && errorMessage.message) {
@@ -55,12 +43,8 @@ export default function CreateVoterForm({
       setIsOpen(false);
     }
   }, [errorMessage, setIsOpen]);
-  const fileTypes = ['.csv', '.xls', '.xlsx'];
 
-  const [file, setFile] = useState<File | null>(null);
-  const handleChange = (file: SetStateAction<File | null>) => {
-    setFile(file);
-  };
+  const [file] = useState<File | null>(null);
 
   console.log(file);
   return (
@@ -75,7 +59,7 @@ export default function CreateVoterForm({
       )}
       <Dialog open={isOpen} onClose={() => {}}>
         <DialogTitle>Add Voter</DialogTitle>
-        <div className="flex items-center justify-end">
+        {/* <div className="flex items-center justify-end">
           <Button
             outline
             onClick={() => {
@@ -84,7 +68,7 @@ export default function CreateVoterForm({
           >
             <ArrowUpOnSquareStackIcon /> Upload bulk voters
           </Button>
-        </div>
+        </div> */}
 
         <form action={dispatch}>
           <DialogBody>
@@ -133,41 +117,7 @@ export default function CreateVoterForm({
         </form>
       </Dialog>
 
-      <Dialog
-        open={showImportLargeVoterModal}
-        onClose={setHowImportLargeVoterModal}
-      >
-        <div className="flex items-center justify-between">
-          <DialogTitle>Import voters</DialogTitle>
-          <Button outline onClick={() => setIsOpen(false)}>
-            <XMarkIcon />
-          </Button>
-        </div>
-        <DialogDescription>
-          Import allow maxs 5000 voters at once. <br /> Support .csv, .xls and
-          .xlsx format.
-        </DialogDescription>
-        <DialogBody>
-          <FileUploader
-            required={true}
-            handleChange={handleChange}
-            name="file"
-            types={fileTypes}
-          >
-            <div className="flex w-full cursor-pointer flex-col items-center justify-center gap-8 bg-zinc-50 py-8 outline-2 -outline-offset-8 outline-zinc-950/5 dark:bg-zinc-900 dark:outline-white/5">
-              <ArrowUpTrayIcon width={32} hanging={32} />
-              <Text className="inline-block max-w-[805] overflow-hidden text-ellipsis whitespace-nowrap">
-                <Strong>Choose a file</Strong> or drag it here
-              </Text>
-            </div>
-          </FileUploader>
-        </DialogBody>
-        <DialogActions className="flex !justify-start">
-          <Button plain className="!font-normal">
-            <ArrowDownTrayIcon /> Download Sample
-          </Button>
-        </DialogActions>
-      </Dialog>
+      
     </>
   );
 }
