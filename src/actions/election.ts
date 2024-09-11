@@ -3,17 +3,13 @@ import { createClient } from '@/lib/supabase/action';
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { getAuthUser } from '@/data/profile';
-import { tiers } from '@/data/tiers';
-import { initializePayment, verifyPayment } from './payment';
+
 const regex = new RegExp(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/);
 const electionSchema = z
   .object({
     name: z
       .string({ required_error: 'name is required' })
       .min(1, 'Election name must contain at least 1 character(s)'),
-    plan: z
-      .string({ required_error: 'Plan is required' })
-      .min(1, 'you must at lease select a plan'),
     description: z.string().optional(),
     start_datetime: z.string().regex(regex, 'Invalid datetime'),
     end_datetime: z.string().regex(regex, 'Invalid datetime'),
@@ -32,7 +28,6 @@ export async function createElection(prevState: any, formData: FormData) {
 
   const validatedFields = electionSchema.safeParse({
     name: formData.get('name'),
-    plan: formData.get('plan'),
     description: formData.get('description'),
     start_datetime: formData.get('start_datetime'),
     end_datetime: formData.get('end_datetime'),
@@ -45,9 +40,8 @@ export async function createElection(prevState: any, formData: FormData) {
     };
   }
 
-  const { description, name, plan, start_datetime, end_datetime } =
+  const { description, name, start_datetime, end_datetime } =
     validatedFields.data;
-  const plan_type = tiers.find((a) => a.id === plan)?.name.toLowerCase();
 
   const { error } = await supabase
     .from('elections')
@@ -57,7 +51,6 @@ export async function createElection(prevState: any, formData: FormData) {
         description: description,
         start_datetime: start_datetime,
         end_datetime: end_datetime,
-        plan: plan_type,
         creator_id: user.id,
       },
     ])
