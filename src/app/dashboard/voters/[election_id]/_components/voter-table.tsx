@@ -1,6 +1,5 @@
 import { getFilteredElectionEligibleVoters } from '@/data/eligible_voter';
 import VoterTableClient from './voter-table-client';
-import { getElection } from '@/data/election';
 import { Tables } from '@/types/database.types';
 
 export default async function VoterTable({

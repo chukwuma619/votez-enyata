@@ -133,7 +133,7 @@ export default function VoterTableClient({
   async function handleBulkDelete() {
     setBulkDeletingStatus(true);
     await Promise.all(
-      selectedPeople.map(async (voter, index) => {
+      selectedPeople.map(async (voter) => {
         await deleteEligibleVoter(voter.access_code, voter.election_id);
       }),
     );

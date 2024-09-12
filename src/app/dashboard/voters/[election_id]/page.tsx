@@ -1,4 +1,3 @@
-import { getElectionVoters } from '@/data/query';
 import { getVotersPages } from '@/data/eligible_voter';
 import { Heading } from '@/components/heading';
 import AddVoter from './_components/button';

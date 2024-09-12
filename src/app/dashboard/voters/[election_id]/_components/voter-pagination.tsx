@@ -7,8 +7,6 @@ import {
   PaginationPage,
   PaginationPrevious,
 } from '@/components/pagination';
-import clsx from 'clsx';
-import Link from 'next/link';
 import { generatePagination } from '@/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 export default function VoterPagination({
