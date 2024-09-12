@@ -137,7 +137,7 @@ export async function sendMail({
   const supabase = createClient();
 
   const { data } = await resend.emails.send({
-    from: 'Acme <onboarding@resend.dev>',
+    from: 'Votez <onboarding@resend.dev>',
     to: voterEmail,
     subject: 'Participate in the Upcoming Election!',
     react: ElectionInvitationEmail({
