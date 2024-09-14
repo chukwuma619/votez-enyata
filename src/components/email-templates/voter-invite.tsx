@@ -38,8 +38,8 @@ export const ElectionInvitationEmail: React.FC<
   endDate,
   creatorEmail,
 }) => {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+  const baseUrl = process.env.WEBSITE_URL
+    ? `https://${process.env.WEBSITE_URL}`
     : 'http://localhost:3000';
 
     
