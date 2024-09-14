@@ -72,47 +72,41 @@ export function generateRandomString(length: number): string {
 
 export function getCurrentDateTime() {
   const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const year = now.getUTCFullYear();
+  const month = String(now.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(now.getUTCDate()).padStart(2, '0');
+  const hours = String(now.getUTCHours()).padStart(2, '0');
+  const minutes = String(now.getUTCMinutes()).padStart(2, '0');
 
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
 export function convertTimestampFmtToInputFmt(datetime: string): string {
   const fmtdatetime = new Date(datetime);
-  const year = fmtdatetime.getFullYear();
-  const month = String(fmtdatetime.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-  const day = String(fmtdatetime.getDate()).padStart(2, '0');
-  const hours = String(fmtdatetime.getHours()).padStart(2, '0');
-  const minutes = String(fmtdatetime.getMinutes()).padStart(2, '0');
+  const year = fmtdatetime.getUTCFullYear();
+  const month = String(fmtdatetime.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(fmtdatetime.getUTCDate()).padStart(2, '0');
+  const hours = String(fmtdatetime.getUTCHours()).padStart(2, '0');
+  const minutes = String(fmtdatetime.getUTCMinutes()).padStart(2, '0');
 
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
 export function convertDateTime(datetime: string): string {
   const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
   ];
-  const date = new Date(datetime);
-  const month = months[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  let hour = date.getHours();
-  const minute = date.getMinutes();
+
+  // Replace space with 'T' to ensure ISO format, then parse the datetime as UTC
+  const correctedDatetime = datetime.replace(' ', 'T');
+  const date = new Date(correctedDatetime); // Parsing in UTC
+
+  const month = months[date.getUTCMonth()]; // Get month in UTC
+  const day = date.getUTCDate(); // Get day in UTC
+  const year = date.getUTCFullYear(); // Get year in UTC
+  let hour = date.getUTCHours(); // Get hour in UTC
+  const minute = date.getUTCMinutes(); // Get minutes in UTC
   const meridiem = hour >= 12 ? 'PM' : 'AM';
 
   // Convert hour to 12-hour format
@@ -125,8 +119,11 @@ export function convertDateTime(datetime: string): string {
   // Add leading zero if minute is less than 10
   const minuteString = minute < 10 ? '0' + minute : minute.toString();
 
-  return `${month} ${day.toString().padStart(2, '0')}, ${year} ${hour}:${minuteString}${meridiem}`;
+  return `${months[date.getUTCMonth()]} ${day.toString().padStart(2, '0')}, ${year} ${hour}:${minuteString}${meridiem}`;
 }
+
+
+
 
 export function getDate(datetime: string): string {
   const months = [
@@ -144,17 +141,17 @@ export function getDate(datetime: string): string {
     'Dec',
   ];
   const date = new Date(datetime);
-  const month = months[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
+  const month = months[date.getUTCMonth()];
+  const day = date.getUTCDate();
+  const year = date.getUTCFullYear();
 
   return `${month} ${day.toString().padStart(2, '0')}, ${year}`;
 }
 
 export function getTime(datetime: string): string {
   const date = new Date(datetime);
-  let hour = date.getHours();
-  const minute = date.getMinutes();
+  let hour = date.getUTCHours();
+  const minute = date.getUTCMinutes();
   const meridiem = hour >= 12 ? 'PM' : 'AM';
 
   // Convert hour to 12-hour format
