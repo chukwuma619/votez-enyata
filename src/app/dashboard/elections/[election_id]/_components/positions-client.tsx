@@ -76,14 +76,11 @@ export default function PositionsClient({
                 </div>
                 <div className="flex items-center gap-4 px-4 py-3">
                   <Button
-                    onClick={() => {
-                      setSelectedData(position);
-                      setOpenEditModal(true);
-                    }}
-                    outline
-                    type="button"
+                  outline
+                   href={pathname + `/${position.id}`} 
                   >
-                    Edit
+                    
+                    View Candidate
                   </Button>
 
                   <Dropdown>
@@ -91,8 +88,12 @@ export default function PositionsClient({
                       <EllipsisVerticalIcon />
                     </DropdownButton>
                     <DropdownMenu>
-                      <DropdownItem href={pathname + `/${position.id}`}>
-                        View Position
+                      <DropdownItem onClick={() => {
+                      setSelectedData(position);
+                      setOpenEditModal(true);
+                    }}
+                    >
+                        Edit
                       </DropdownItem>
                       <DropdownItem
                         onClick={() => {
