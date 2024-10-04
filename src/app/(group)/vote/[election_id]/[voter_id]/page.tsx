@@ -21,25 +21,25 @@ export default async function ElectionVoting({
     notFound();
   }
 
-  const now = new Date();
-  const startDateime = new Date(election.start_datetime);
-  const endDateTime = new Date(election.end_datetime);
+  // const now = new Date();
+  // const startDateime = new Date(election.start_datetime);
+  // const endDateTime = new Date(election.end_datetime);
 
-  if (now < startDateime)
-    return (
-      <ErrorState
-        title="Voting Hasn't Started Yet"
-        description="The voting period for this election hasn't begun. Please check back once the election starts. Thank you for your patience and participation!"
-      />
-    );
+  // if (now < startDateime)
+  //   return (
+  //     <ErrorState
+  //       title="Voting Hasn't Started Yet"
+  //       description="The voting period for this election hasn't begun. Please check back once the election starts. Thank you for your patience and participation!"
+  //     />
+  //   );
 
-  if (now > endDateTime)
-    return (
-      <ErrorState
-        title="Voting Has Ended"
-        description="The voting period for this election has concluded. Voting is no longer available. Thank you for your interest and participation!"
-      />
-    );
+  // if (now > endDateTime)
+  //   return (
+  //     <ErrorState
+  //       title="Voting Has Ended"
+  //       description="The voting period for this election has concluded. Voting is no longer available. Thank you for your interest and participation!"
+  //     />
+  //   );
   return (
     <>
       <div className="flex min-h-svh w-full justify-center px-2 py-2 focus:outline-0 sm:px-6 sm:py-8 lg:p-8">
