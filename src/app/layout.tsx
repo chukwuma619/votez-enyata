@@ -3,6 +3,7 @@ import { Inter, Lexend } from 'next/font/google';
 import clsx from 'clsx';
 import './globals.css';
 import ThemeProvider from '@/components/theme-context';
+import Script from "next/script"
 // import { Providers } from "./providers";
 const inter = Inter({
   subsets: ['latin'],
@@ -42,8 +43,14 @@ export default function RootLayout({
       >
         <body className={inter.className}>
           {children}
-         
+          <div id="saylo-widget" style={{ width: '350px' }}></div>
+          <Script id='saylo-widgetjs' src="https://www.saylo.io/widget.js"> </Script>
+
+<Script id='saylo-init'>
+ {` window.Saylo.init({ apiKey: 'Cyu82du2DiMK1V6lIeGLWX4h-dcyWXBzuTM-6WQY' })`}
+</Script>
           </body>
+         
       </html>
     </ThemeProvider>
   );
